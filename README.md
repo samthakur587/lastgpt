@@ -1,0 +1,2 @@
+# lastgpt
+final legel chatgpt
