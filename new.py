@@ -185,5 +185,5 @@ async def process_text(request: HighlightRequest):
 
     return JSONResponse(content={"cleaned_tokens": cleaned_tokens, "highlighted_phrases": highlighted_phrases})
 
-if _name_ == "_main_":
+if __name__ == "__main__":
     uvicorn.run(app, host="0.0.0.0", port=8000)
