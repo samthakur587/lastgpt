@@ -5,6 +5,7 @@ from nltk.stem import WordNetLemmatizer
 from nltk.corpus import stopwords
 import string
 from fastapi import FastAPI
+import uvicorn
 from pydantic import BaseModel
 from typing import List
 import re
