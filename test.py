@@ -177,7 +177,6 @@ async def process_text(request: HighlightRequest):
     print(highlighted_phrases)
     print(len(highlighted_phrases))
     
-
     return JSONResponse(content={"cleaned_tokens": cleaned_tokens, "highlighted_phrases": highlighted_phrases})
 
 if __name__ == "__main__":
