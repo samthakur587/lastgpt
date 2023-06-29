@@ -17,10 +17,10 @@ RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
 
 #Copy the test.py file to the container
-COPY test.py .
+COPY praj.py .
 COPY highlight.py .
 
 
 
 #Set the entrypoint command to run your FastAPI app
-CMD ["uvicorn", "test:app", "--host", "0.0.0.0"]
+CMD ["uvicorn", "praj:app", "--host", "0.0.0.0"]
