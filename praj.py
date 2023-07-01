@@ -13,7 +13,7 @@ from langchain.chains import ConversationChain
 from langchain.memory import ConversationSummaryBufferMemory
 from fastapi import FastAPI,UploadFile, File
 from fastapi.responses import JSONResponse
-
+import re
 from highlight import lemmatize_and_clean_text,highlight_words, get_highlighted_phrases
 
 
@@ -127,9 +127,10 @@ async def askqa(user_id:str,query: str = 'brief explanation of this case' ):
         prompt[user_id] = query
         response = qa({"question": prompt[user_id]})
         suggestion = qa({"question": "suggest me three questions similar to the previous questions"})
-        if "doesn't answer the quest" in suggestion['answer']:
-            suggestion['answer'] = "Kindly, Ask more questions for suggestions 😊"
-        suggestion = list(suggestion['answer'].split('?'))
+        if " This document does not answer the question" in suggestion['answer']:
+            suggestion = "Kindly, Ask more questions for suggestions 😊"
+        else:
+            suggestion = re.findall(r'Q\. (.*?)[,?]', suggestion['answer'])
         return {'answer': response['answer'],'suggestion':suggestion}
     except requests.exceptions.HTTPError as err:
         # Handle HTTP errors here
