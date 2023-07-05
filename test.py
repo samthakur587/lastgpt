@@ -123,9 +123,9 @@ async def askqa(user_id:str,query: str = 'brief explanation of this case' ):
     try:
         prompt[user_id] = query
         response = qa({"question": prompt[user_id]})
-        suggestion = qa({"question": "suggest me three questions similar to the previous questions"})
-        suggestion = list(suggestion['answer'].split('?'))
-        return {'answer': response['answer'],'suggestion':suggestion}
+        # suggestion = qa({"question": "suggest me three questions similar to the previous questions"})
+        # suggestion = list(suggestion['answer'].split('?'))
+        return {'answer': response['answer'])#,'suggestion':suggestion}
     except requests.exceptions.HTTPError as err:
         # Handle HTTP errors here
         return JSONResponse(status_code=404, content={'error': str(err)})
